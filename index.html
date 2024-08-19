@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Youtube Project</title>
+        <style>
+            body{
+                margin:0;
+                height: 2000px;
+                padding-top: 50px;
+                padding-left:96px;
+                margin-right: 20px;
+                background-color: rgb(248, 248, 248);
+            }
+
+            a{
+                color: black;
+            }
+
+            
+            .thumb{
+                width: 300px;
+                margin-top: 35px;
+                margin-bottom: 0px;
+                display: block;
+                cursor: pointer;
+            }
+            .thumb1-div{
+                position: relative;
+            }
+            .vid-time{
+                position: absolute;
+                background-color: black;
+                color: white;
+                bottom: 0;
+                right:0;
+                font-family: roboto,Arial, Helvetica, sans-serif;
+                font-size: small;
+                font-weight:500;
+                margin-bottom: 5px;
+                margin-right: 5px;
+                padding-left: 3px;
+                padding-right: 3px;
+                padding-top: 2px;
+                padding-bottom: 2px;
+                box-sizing: border-box; 
+                line-height: 1;
+            }
+
+            .thumb2{
+                width: 300px;
+                margin-left: 17px;
+                margin-top: 35px;
+                margin-bottom: 0px;
+                display: inline-block;
+            }
+
+            .thumb2-div{
+                position: relative;
+            }
+            .vid-img-icon{
+                
+                border-radius: 35px;
+                margin-bottom: 73px;;
+                width: 35px;
+                margin-top: 10px;    
+            }
+
+            .vid2-img-icon{
+                width: 35px;
+                margin-left: 18px;
+                border-radius: 35px;
+                margin-top: 8px;
+            }
+            .vid-title{
+                font-family: Roboto, Arial, sans-serif;
+                font-weight: bold;
+                width: 250px;
+                font-size: 15px;
+                display: inline-block;
+                line-height: 20px;
+                margin-bottom: 0px;
+                margin-top: 5px;
+                cursor: pointer;
+            }
+            .vid-auth{
+                font-family: Roboto, Arial, sans-serif;
+                color: gray;
+                font-size: small;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                
+                
+            }
+            .vid-stats{
+                font-family: Roboto, Arial, sans-serif;
+                color: gray;
+                font-size: small;
+                margin-top: 5px;  
+                margin-bottom: 30px; 
+            }
+           
+            .title-div{
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+            .vid-det-div1{
+                display: inline-block;
+                
+            }
+            .vid1-dets-div1{
+                margin-left: 0px;
+            }           
+            
+            .vid-dets-div2{
+                display: inline-block;
+                margin-left: 5px;
+                margin-bottom: 0px;
+                vertical-align: top;
+            }
+            .vid2-det-div1{
+                display: inline-block;  
+                
+            }
+            .vid2-dets-div2{
+                display: inline-block;
+                margin-left: 5px;
+                margin-bottom: 0px;
+                vertical-align: top;
+            }
+            .vid2-dets-div1{
+                margin-right: 10px;
+                display: flex;
+                flex-direction: row;
+            }
+            .vid-1{
+            float: left;
+            display: inline-block;
+            }
+
+            .vid-2, .vid-3{
+                display: inline-block;
+            }
+          
+            .header{
+                z-index: 100;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                height: 57px;
+                position: fixed;
+                top:0;
+                left: 0;
+                right:0;
+                background-color: white;
+                border-bottom-width: 1px;
+                border-bottom-color: rgb(212, 208, 208);
+                border-bottom-style:solid;
+            }
+            
+            .left-section{
+            display: flex;
+            align-items: center;
+            }
+
+            .ham-butt{
+                margin-left: 24px;
+                height:24px;
+            }
+            .youtube-logo{
+                margin-left: 24px;
+                height: 20px;
+            }
+
+            .middle-section{
+                flex:1;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                max-width: 470px;
+                margin-left: 60px;
+                margin-right: 35px;
+                
+            }
+
+            .search-bar{
+                font-family: Roboto, Arial, Helvetica, sans-serif;
+                height: 40px;
+                flex:1;
+                font-size: 16px;
+                padding-left: 10px;
+                display: inline-block;
+                border-color: rgb(192, 192, 192);
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 2px;
+                width:0;
+            }
+
+            .search-but{
+                height:40px;
+                width: 66px;
+                display: flex;
+                align-items: center;
+                border-color: rgb(192, 192, 192);
+                border-style: solid;
+                border-width: 1px;
+                margin-left: -1px;
+                border-radius: 2px;
+                margin-right: 10px;
+                
+            }
+            .search-img{
+                height:25px;
+                padding-left: 0px;
+                padding-top: 2px;
+
+            }
+
+            .search-but, .voice-search-but, .upload-div,
+            .youtube-apps-div, .notify-div{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .search-but .tooltip,
+            .voice-search-but .tooltip,
+            .upload-div .tooltip,
+            .youtube-apps-div  .tooltip,
+            .notify-div  .tooltip{
+                font-family: roboto, Arial, Helvetica, sans-serif;
+                position: absolute;
+                bottom: -37px;
+                background-color: gray;
+                color: white;
+                padding-top: 8px;
+                padding-bottom: 8px;
+                padding-left: 8px;
+                padding-right: 8px;
+                border-radius: 2px;
+                font-size: 12px;
+                opacity: 0;
+                transition: opacity 0.20s;
+                pointer-events: none;
+                white-space: nowrap;
+            }
+
+            .search-but:hover .tooltip,
+            .voice-search-but:hover .tooltip,
+            .upload-div:hover .tooltip,
+            .youtube-apps-div:hover .tooltip,
+            .notify-div:hover .tooltip
+            {
+                opacity: 1;
+            }
+
+            .voice-search-but{
+                height:40px;
+                width: 40px;
+                border-radius: 20px;
+                border:none;
+                background-color: rgb(248, 248, 248);
+            }
+
+            .search-but, .voice-search-but{
+                position: relative;
+            }
+
+            .voice-search-img{
+                height:24px;
+                margin-top: 0px;
+            }
+            .right-section{
+            margin-right: 20px;
+            width: 182px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            
+            }
+
+            .upload-img{
+                height: 24px;
+            }
+            .youtube-apps-img{
+                height: 24px;
+            }
+            .notify-img{
+                height: 24px;
+            }
+            .notify-div{
+                position: relative;
+           }
+           .notify-3{
+            position: absolute;
+            background-color: rgb(200,0,0);
+            color: white;
+            top: -2px;;
+            right:-4px;
+            font-family: roboto, Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            border-radius: 10px;
+           }
+
+
+            .user-img{
+                height: 32px;
+                border-radius: 16px;
+            }
+           .sidebar{
+            background-color: white;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            top:57px;
+            width: 72px;
+            z-index: 200;
+            padding-top: 5px;
+            cursor: pointer;
+           }
+           .sidebar-link{
+            height:76px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+           }
+           .sidebar-link:hover{
+            background-color: rgb(235,235,235);
+           }
+           .sidebar img{
+            height: 24px;
+            margin-bottom: 4px;
+           }
+
+           .sidebar-link div{
+            font-family: roboto, Arial, Helvetica, sans-serif;
+            font-size: 10px;
+           }
+
+           .videos, .videos2{
+            display: flex;
+            flex-direction: row;
+           }
+
+           .videos2 .thumb2{
+            margin-left: 0px;
+            margin-top: 8px;
+           }
+
+           .videos2 .vid2-dets-div1{
+            margin-left: -15px;
+           }
+
+           .videos2 .vid-time{
+            bottom: 5px;
+            right:5px;
+           }
+          
+           .videos2 .mg_video{
+            margin-left: 0px;
+           }
+
+           .videos2 .vid-6,.vid-7,.vid-8{
+            margin-left: 17px;
+           }
+           .vid-4,.vid-8  .vid-time{
+            right: 12px;
+           }
+           .vid-3  .vid-time{
+            bottom:5px;
+            right:5px;
+           }
+           .vid-02 .vid-time{
+            bottom: 5px;
+            right: 5px;
+           }
+           .vid-4  .vid-time{
+            bottom:5px;
+           }
+           .vid-7 .vid2-img-icon{
+            margin-left:12px ;
+           }
+       </style>
+    </head>
+<body>
+    <header class="header">
+        <div class="left-section">
+            
+            <img class="ham-butt" src="images/youtube_project_buttons/hamburger-menu.svg">
+            <img class="youtube-logo" src="images/youtube_project_buttons/youtube-logo.svg">
+    
+        </div>
+        <div class="middle-section">
+            <input type="search" placeholder="Search" class="search-bar">
+            <button class="search-but">
+                <img class="search-img" src="images/youtube_project_buttons/search.svg">
+                <div class="tooltip">Search</div>
+            </button>
+            <button class="voice-search-but">
+                <img class="voice-search-img" src="images/youtube_project_buttons/voice-search-icon.svg">
+                <div class="tooltip">Search with your voice</div>
+            </button>
+        </div>
+        <div class="right-section">
+            <div class="upload-div">
+                <img class="upload-img" src="images/youtube_project_buttons/upload.svg">
+                <div class="tooltip">Create</div>
+            </div>
+            <div class="youtube-apps-div">
+              <img class="youtube-apps-img" src="images/youtube_project_buttons/youtube-apps.svg">
+              <div class="tooltip">Youtube apps</div>
+            </div>              
+            <div class="notify-div">
+                <img class="notify-img" src="images/youtube_project_buttons/notifications.svg">
+                <div class="notify-3">3</div>
+                <div class="tooltip">Notifications</div>
+            </div>
+              
+            <img class="user-img" src="images/youtube_project_buttons/owl.jpg">
+            
+        </div>
+    </header>
+
+    <div class="sidebar">
+        <div class="sidebar-link">
+            <img src="images/youtube_project_buttons/home.svg">
+            <div>Home</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="images/youtube_project_buttons/explore.svg">
+            <div>Explore</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="images/youtube_project_buttons/subscriptions.svg">
+            <div>Subscriptions</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="images/youtube_project_buttons/originals.svg">
+            <div>Originals</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="images/youtube_project_buttons/youtube-music.svg">
+            <div>Youtube Music</div>
+        </div>
+        <div class="sidebar-link">
+            <img src="images/youtube_project_buttons/library.svg">
+            <div>Library</div>
+        </div>
+    </div>
+    <section>
+        <div class="videos">
+            <div class="vid-1">
+                <div class="thumb1-div"><!--position relative-->
+                    <a href="https://www.youtube.com/watch?v=n2RNcPRtAiY" target="_blank">
+                    <img class="thumb" src="images/yotube_project_thumbnail/thumbnail-1.webp">
+                </a>
+                    <div class="vid-time">14:20</div><!--position absolute-->
+                    <!--Position absolute inside position relative-->
+                </div>
+                <div class="vid1-dets-div1">
+                    <div class="vid-det-div1">
+                        <a href="https://www.youtube.com/c/mkbhd" target="_blank">
+                        <img class="vid-img-icon" src="images/youtube_project_logos/channel-icon-1.jpeg">
+                    </a>
+                    </div>
+                    <div class="vid-dets-div2">
+                        <div class="title-div">
+                            <a href="https://www.youtube.com/watch?v=n2RNcPRtAiY" target="_blank">
+                            <p class="vid-title">
+                                Talking Tech and AI with Google CEO Sundar Pichai!
+                            </p>
+                            </a>
+                        </div>
+                        <div class="vid-dets-div3">
+                            <p class="vid-auth">
+                                Marques Brownlee
+                            </p>
+                            <p class="vid-stats">
+                                3.4M views · 6 months ago
+                            </p>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+                <div class="vid-02">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/thumbnail-2.webp">
+                    </a>
+                        <div class="vid-time">8:22</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/c/markiplier" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/channel-2.jpeg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                                <p class="vid-title">
+                                    Try Not To Laugh Challenge #9
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    Markiplier
+                                </p>
+                                <p class="vid-stats">
+                                    19M views · 4 years ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            <div>
+                <div class="vid-3">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/goat.webp">
+                    </a>
+                        <div class="vid-time">2:52</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/c/markiplier" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/tseries.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                                <p class="vid-title">
+                                    THE GOAT (Official Trailer)|Thalapathy Vijay | Yuvan
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    T-Series
+                                </p>
+                                <p class="vid-stats">
+                                    35M views · 1 day ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="vid-4">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/mahis.webp">
+                    </a>
+                        <div class="vid-time">2:07</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/c/markiplier" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/channels4_profile.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                                <p class="vid-title">
+                                    Mahishmathi Samrajyam | Video | SS Rajamouli | Prabhas
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    Manorama Music Songs
+                                </p>
+                                <p class="vid-stats">
+                                    1.2M views · 8 year ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        <div class="videos2">
+            <div class="mg_video">
+                <div class="vid-5">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/manipur.webp">
+                    </a>
+                        <div class="vid-time">12:58</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/c/markiplier" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/mg-icon.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=mP0RAo9SKZk" target="_blank">
+                                <p class="vid-title">
+                                    Manipur issue explained | Madan Gowri
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    Madan Gowri
+                                </p>
+                                <p class="vid-stats">
+                                    3.3M views · 1 year ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div>
+                <div class="vid-6">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=ySXBVrmPQog" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/pogathey-thum.webp">
+                    </a>
+                        <div class="vid-time">5:24</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/@thinkmusicofficial" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/think-music-india-pogathey.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=ySXBVrmPQog" target="_blank">
+                                <p class="vid-title">
+                                    Pogathey Video Song| Dada| Kavin | Aparna Das
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                   Think Music India
+                                </p>
+                                <p class="vid-stats">
+                                    3.4M views · 11 months ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div>
+                <div class="vid-7">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=xVcoYF--0mM" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/vachindamma.webp">
+                    </a>
+                        <div class="vid-time">4:21</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/@adityamusic" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/aditya-music.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=xVcoYF--0mM" target="_blank">
+                                <p class="vid-title">
+                                    Vachindamma Full Video Song | Geetha Govindam| Vijay, Rashmika
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    Aditya Music
+                                </p>
+                                <p class="vid-stats">
+                                    160M views · 5 years ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div>
+                <div class="vid-8">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=syFZfO_wfMQ" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/one-dir.webp">
+                    </a>
+                        <div class="vid-time">4:01</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/channel/UCb2HGwORFBo94DmRx4oLzow" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/one-dir-chann-dp.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=syFZfO_wfMQ" target="_blank">
+                                <p class="vid-title">
+                                    One Direction - Night Changes
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    One Direction
+                                </p>
+                                <p class="vid-stats">
+                                    830M views · 9 years ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="videos2">
+            <div class="mg_video">
+                <div class="vid-5">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=yCKO5KUDcVs" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/usurey-pogu.webp">
+                    </a>
+                        <div class="vid-time">5:53</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/@SonyMusicSouthVEVO" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/sony-music-usurey.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/@thinkmusicofficial" target="_blank">
+                                <p class="vid-title">
+                                    Raavanan - Usure Pogudhey Video | A.R.Rahman | Vikram, Aishwarya
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    SonyMusicSouthVEVO
+                                </p>
+                                <p class="vid-stats">
+                                    54M views · 9 years ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div>
+                <div class="vid-6">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=-dLe9C7z9dI" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/natpu.webp">
+                    </a>
+                        <div class="vid-time">5:24</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/@TseriesTamil" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/tseries-tamil.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=-dLe9C7z9dI" target="_blank">
+                                <p class="vid-title">
+                                    Natpu Video Song (Tamil) | RRR | NTR, Ram Charan
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                   T-Series  Tamil
+                                </p>
+                                <p class="vid-stats">
+                                    1.7M views · 2 years ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div>
+                <div class="vid-7">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=O4cDLhwD30I&t=789s" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/ar-rahman-sad.webp">
+                    </a>
+                        <div class="vid-time">23:25</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/@Senthilkumar" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/ar-rah-profile.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=O4cDLhwD30I&t=789s" target="_blank">
+                                <p class="vid-title">
+                                    Sad Theme from a Happy Song | A.R.Rahman BGMs
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    Senthil kumar
+                                </p>
+                                <p class="vid-stats">
+                                    76K views · 9 months ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div>
+                <div class="vid-8">
+                    <div class="thumb2-div">
+                        <a href="https://www.youtube.com/watch?v=EOQved5sXmU" target="_blank">
+                        <img class="thumb2" src="images/yotube_project_thumbnail/enthiran.webp">
+                    </a>
+                        <div class="vid-time">29:01</div>
+                    </div>
+                    <div class="vid2-dets-div1">
+                        <div class="vid2-det-div1">
+                            <a href="https://www.youtube.com/@thinkmusicofficial" target="_blank">
+                            <img class="vid2-img-icon" src="images/youtube_project_logos/think-music-india-pogathey.jpg">
+                        </a>
+                        </div>
+                        <div class="vid2-dets-div2">
+                            <div class="title-div">
+                                <a href="https://www.youtube.com/watch?v=EOQved5sXmU" target="_blank">
+                                <p class="vid-title">
+                                    Enthiran - Original Background Score | Rajinikanth, Aishwarya Rai | A.R. Rahman
+                                </p>
+                            </a>
+                            </div>
+                            <div class="vid-dets-div3">
+                                <p class="vid-auth">
+                                    Think Music India
+                                </p>
+                                <p class="vid-stats">
+                                    760K views · 5 years ago
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+    
+</body>
+</html
+
+
+
+
+
